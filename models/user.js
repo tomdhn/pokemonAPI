@@ -1,3 +1,6 @@
+const Joi = require('joi-oid')
+const mongoose = require('mongoose');
+
 const UserSchema = new mongoose.Schema({
     admin: {
         type: Boolean,
