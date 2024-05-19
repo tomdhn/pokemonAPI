@@ -1,0 +1,14 @@
+{
+  "name": "ti-eind-assignment-2324-project-tomdhn",
+  "version": "1.0.0",
+  "description": "a pokemon api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tom Dhoine",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
