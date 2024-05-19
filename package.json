@@ -9,6 +9,8 @@
   "author": "Tom Dhoine",
   "license": "ISC",
   "dependencies": {
+    "config": "^3.3.11",
+    "cors": "^2.8.5",
     "express": "^4.19.2",
     "joi": "^17.13.1",
     "joi-oid": "^1.1.2",
