@@ -496,8 +496,13 @@
                   }
                 },
                 "type": {
-                  "type": "string",
-                  "example": "typeid"
+                  "type": "array",
+                  "example": [
+                    "typeid"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "base": {
                   "type": "object",
@@ -638,8 +643,13 @@
                   }
                 },
                 "type": {
-                  "type": "string",
-                  "example": "typeid"
+                  "type": "array",
+                  "example": [
+                    "typeid"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "base": {
                   "type": "object",
@@ -744,8 +754,13 @@
                   }
                 },
                 "type": {
-                  "type": "string",
-                  "example": "typeid"
+                  "type": "array",
+                  "example": [
+                    "typeid"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "base": {
                   "type": "object",
@@ -824,6 +839,315 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/moves/": {
+      "post": {
+        "tags": [
+          "Moves"
+        ],
+        "description": "Create a new move",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Move information",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "accuracy": {
+                  "type": "string",
+                  "example": "Accuracy"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "Category"
+                },
+                "ename": {
+                  "type": "string",
+                  "example": "EnglishName"
+                },
+                "cname": {
+                  "type": "string",
+                  "example": "ChineseName"
+                },
+                "jname": {
+                  "type": "string",
+                  "example": "JapaneseName"
+                },
+                "fname": {
+                  "type": "string",
+                  "example": "FrenchName"
+                },
+                "power": {
+                  "type": "string",
+                  "example": "Power"
+                },
+                "pp": {
+                  "type": "string",
+                  "example": "Power Points"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "typeId"
+                }
+              },
+              "required": [
+                "accuracy",
+                "category",
+                "ename",
+                "cname",
+                "jname",
+                "fname",
+                "power",
+                "pp",
+                "type"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Moves"
+        ],
+        "description": "Get all moves",
+        "responses": {
+          "302": {
+            "description": "Found"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/moves/{id}": {
+      "get": {
+        "tags": [
+          "Moves"
+        ],
+        "description": "Get a move by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Move ID"
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Found"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Moves"
+        ],
+        "description": "Partially update a move by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Move ID"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Fields to update",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "accuracy": {
+                  "type": "string",
+                  "example": "Accuracy"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "Category"
+                },
+                "ename": {
+                  "type": "string",
+                  "example": "EnglishName"
+                },
+                "cname": {
+                  "type": "string",
+                  "example": "ChineseName"
+                },
+                "jname": {
+                  "type": "string",
+                  "example": "JapaneseName"
+                },
+                "fname": {
+                  "type": "string",
+                  "example": "FrenchName"
+                },
+                "power": {
+                  "type": "string",
+                  "example": "Power"
+                },
+                "pp": {
+                  "type": "string",
+                  "example": "Power Points"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "typeId"
+                }
+              },
+              "required": [
+                "accuracy",
+                "category",
+                "ename",
+                "cname",
+                "jname",
+                "fname",
+                "power",
+                "pp",
+                "type"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Moves"
+        ],
+        "description": "Update a move by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Move ID"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Updated information for the move",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "accuracy": {
+                  "type": "string",
+                  "example": "Accuracy"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "Category"
+                },
+                "ename": {
+                  "type": "string",
+                  "example": "EnglishName"
+                },
+                "cname": {
+                  "type": "string",
+                  "example": "ChineseName"
+                },
+                "jname": {
+                  "type": "string",
+                  "example": "JapaneseName"
+                },
+                "fname": {
+                  "type": "string",
+                  "example": "FrenchName"
+                },
+                "power": {
+                  "type": "string",
+                  "example": "Power"
+                },
+                "pp": {
+                  "type": "string",
+                  "example": "Power Points"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "moveId"
+                }
+              },
+              "required": [
+                "accuracy",
+                "category",
+                "ename",
+                "cname",
+                "jname",
+                "fname",
+                "power",
+                "pp",
+                "type"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Moves"
+        ],
+        "description": "Delete a move by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Move ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
             "description": "Not Found"

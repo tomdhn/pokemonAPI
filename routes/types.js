@@ -22,10 +22,10 @@ router.post('/', async (req, res) => {
     if (error) return res.status(400).send(error.details[0].message);
 
     let type = new TypesModel({
-        english: req.body.englishName,
-        chinese: req.body.chineseName,
-        japanese: req.body.japaneseName,
-        french: req.body.frenchName
+        english: req.body.english,
+        chinese: req.body.chinese,
+        japanese: req.body.japanese,
+        french: req.body.french
     });
 
     try {
@@ -148,7 +148,7 @@ router.delete('/:id', async (req, res) => {
      #swagger.parameters['id'] = { description: 'Type ID', required: true }
     */
     try {
-        const type = await TypesModel.findByIdAndRemove(req.params.id);
+        const type = await TypesModel.findByIdAndDelete(req.params.id);
         if (!type) return res.status(404).send('Type not found.');
         res.status(200).send(type);
     } catch (err) {

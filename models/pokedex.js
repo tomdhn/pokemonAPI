@@ -76,7 +76,7 @@ const ValidatePokedex = (pokedex) => {
             chinese: Joi.string().min(1).max(100),
             french: Joi.string().min(1).max(100)
         }),
-        type: Joi.array().items(Joi.ObjectId()).required(),
+        type: Joi.array().items(Joi.objectId()).required(),
         base: Joi.object({
             HP: Joi.number().required(),
             Attack: Joi.number().required(),
@@ -85,7 +85,7 @@ const ValidatePokedex = (pokedex) => {
             "Sp. Defense": Joi.number().required(),
             Speed: Joi.number().required()
         }),
-        moves: Joi.array().items(Joi.ObjectId())
+        moves: Joi.array().items(Joi.objectId())
     });
 
     return schema.validate(pokedex);

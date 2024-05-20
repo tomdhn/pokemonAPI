@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
                 chinese: 'ChineseName',
                 french: 'FrenchName'
             },
-            $type: 'typeid',
+            $type: ['typeid'],
             $base: {
                 HP: 'Hit Points',
                 Attack: 'Attack',
@@ -35,10 +35,10 @@ router.post('/', async (req, res) => {
 
     let pokedex = new PokedexModel({
         name: {
-            english: req.body.name.englishName,
-            japanese: req.body.name.japaneseName,
-            chinese: req.body.name.chineseName,
-            french: req.body.name.frenchName
+            english: req.body.name.english,
+            japanese: req.body.name.japanese,
+            chinese: req.body.name.chinese,
+            french: req.body.name.french
         },
         type: req.body.type,
         base: {
@@ -66,7 +66,7 @@ router.get('/', async (req, res) => {
       #swagger.description = 'Retrieve all entries from the Pokedex.'
     */
     try {
-        const pokedex = await PokedexModel.find();
+        const pokedex = await PokedexModel.find().populate('type').populate('moves');
         res.status(302).send(pokedex);
     } catch (err) {
         res.status(400).send(err.message);
@@ -80,7 +80,7 @@ router.get('/:id', async (req, res) => {
       #swagger.parameters['id'] = { in: 'path', description: 'ID of the Pokedex entry', required: true, type: 'string' }
     */
     try {
-        const pokedex = await PokedexModel.findById(req.params.id);
+        const pokedex = await PokedexModel.findById(req.params.id).populate('type').populate('moves');
         if (!pokedex) return res.status(404).send('Pokedex entry not found.');
         res.status(302).send(pokedex);
     } catch (err) {
@@ -101,7 +101,7 @@ router.patch('/:id', async (req, res) => {
                 chinese: 'ChineseName',
                 french: 'FrenchName'
             },
-            $type: 'typeid',
+            $type: ['typeid'],
             $base: {
                 HP: 'Hit Points',
                 Attack: 'Attack',
@@ -147,7 +147,7 @@ router.put('/:id', async (req, res) => {
                 chinese: 'ChineseName',
                 french: 'FrenchName'
             },
-            $type: 'typeid',
+            $type: ['typeid'],
             $base: {
                 HP: 'Hit Points',
                 Attack: 'Attack',
@@ -191,7 +191,7 @@ router.delete('/:id', async (req, res) => {
       #swagger.parameters['id'] = { in: 'path', description: 'ID of the Pokedex entry', required: true, type: 'string' }
     */
     try {
-        const pokedex = await PokedexModel.findByIdAndRemove(req.params.id);
+        const pokedex = await PokedexModel.findByIdAndDelete(req.params.id);
         if (!pokedex) return res.status(404).send('Pokedex entry not found.');
         res.status(200).send(pokedex);
     } catch (err) {

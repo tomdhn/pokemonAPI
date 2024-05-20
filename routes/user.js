@@ -144,7 +144,7 @@ router.delete('/:id', async (req, res) => {
      #swagger.parameters['id'] = { description: 'User ID', required: true }
     */
     try {
-        const user = await UserModel.findByIdAndRemove(req.params.id);
+        const user = await UserModel.findByIdAndDelete(req.params.id);
         if (!user) return res.status(404).send('User not found.');
         res.status(200).send(user);
     } catch (err) {
