@@ -113,6 +113,29 @@
             "required": true,
             "type": "string",
             "description": "User ID"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Fields to update",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "UpdatedUsername"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "updated@example.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "updatedPassword"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -139,6 +162,34 @@
             "required": true,
             "type": "string",
             "description": "User ID"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User information",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "UpdatedUsername"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "updated@example.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "updatedPassword"
+                }
+              },
+              "required": [
+                "username",
+                "email",
+                "password"
+              ]
+            }
           }
         ],
         "responses": {
@@ -147,6 +198,632 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Delete a user by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "User ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/types/": {
+      "post": {
+        "tags": [
+          "Types"
+        ],
+        "description": "Create a new type",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Type information",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "english": {
+                  "type": "string",
+                  "example": "EnglishName"
+                },
+                "chinese": {
+                  "type": "string",
+                  "example": "ChineseName"
+                },
+                "japanese": {
+                  "type": "string",
+                  "example": "JapaneseName"
+                },
+                "french": {
+                  "type": "string",
+                  "example": "FrenchName"
+                }
+              },
+              "required": [
+                "english",
+                "chinese",
+                "japanese",
+                "french"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Types"
+        ],
+        "description": "Get all types",
+        "responses": {
+          "302": {
+            "description": "Found"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/types/{id}": {
+      "get": {
+        "tags": [
+          "Types"
+        ],
+        "description": "Get a type by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Type ID"
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Found"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Types"
+        ],
+        "description": "Partially update a type by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Type ID"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Fields to update",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "english": {
+                  "type": "string",
+                  "example": "EnglishName"
+                },
+                "chinese": {
+                  "type": "string",
+                  "example": "ChineseName"
+                },
+                "japanese": {
+                  "type": "string",
+                  "example": "JapaneseName"
+                },
+                "french": {
+                  "type": "string",
+                  "example": "FrenchName"
+                }
+              },
+              "required": [
+                "english",
+                "chinese",
+                "japanese",
+                "french"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Types"
+        ],
+        "description": "Fully update a type by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Type ID"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Type information",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "english": {
+                  "type": "string",
+                  "example": "EnglishName"
+                },
+                "chinese": {
+                  "type": "string",
+                  "example": "ChineseName"
+                },
+                "japanese": {
+                  "type": "string",
+                  "example": "JapaneseName"
+                },
+                "french": {
+                  "type": "string",
+                  "example": "FrenchName"
+                }
+              },
+              "required": [
+                "english",
+                "chinese",
+                "japanese",
+                "french"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Types"
+        ],
+        "description": "Delete a type by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Type ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/pokedex/": {
+      "post": {
+        "tags": [
+          "Pokedex"
+        ],
+        "description": "Create a new entry in the Pokedex",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Pokedex information",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "object",
+                  "properties": {
+                    "english": {
+                      "type": "string",
+                      "example": "EnglishName"
+                    },
+                    "japanese": {
+                      "type": "string",
+                      "example": "JapaneseName"
+                    },
+                    "chinese": {
+                      "type": "string",
+                      "example": "ChineseName"
+                    },
+                    "french": {
+                      "type": "string",
+                      "example": "FrenchName"
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string",
+                  "example": "typeid"
+                },
+                "base": {
+                  "type": "object",
+                  "properties": {
+                    "HP": {
+                      "type": "string",
+                      "example": "Hit Points"
+                    },
+                    "Attack": {
+                      "type": "string",
+                      "example": "Attack"
+                    },
+                    "Defense": {
+                      "type": "string",
+                      "example": "Defense"
+                    },
+                    "Sp. Attack": {
+                      "type": "string",
+                      "example": "Special Attack"
+                    },
+                    "Sp. Defense": {
+                      "type": "string",
+                      "example": "Special Defense"
+                    },
+                    "Speed": {
+                      "type": "string",
+                      "example": "Speed"
+                    }
+                  }
+                },
+                "moves": {
+                  "type": "array",
+                  "example": [
+                    "MovesIds"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "name",
+                "type",
+                "base",
+                "moves"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Pokedex"
+        ],
+        "description": "Retrieve all entries from the Pokedex.",
+        "responses": {
+          "302": {
+            "description": "Found"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/pokedex/{id}": {
+      "get": {
+        "tags": [
+          "Pokedex"
+        ],
+        "description": "Retrieve a specific entry from the Pokedex by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the Pokedex entry"
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Found"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Pokedex"
+        ],
+        "description": "Update a specific entry in the Pokedex by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the Pokedex entry"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Updated information for the Pokedex entry",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "object",
+                  "properties": {
+                    "english": {
+                      "type": "string",
+                      "example": "EnglishName"
+                    },
+                    "japanese": {
+                      "type": "string",
+                      "example": "JapaneseName"
+                    },
+                    "chinese": {
+                      "type": "string",
+                      "example": "ChineseName"
+                    },
+                    "french": {
+                      "type": "string",
+                      "example": "FrenchName"
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string",
+                  "example": "typeid"
+                },
+                "base": {
+                  "type": "object",
+                  "properties": {
+                    "HP": {
+                      "type": "string",
+                      "example": "Hit Points"
+                    },
+                    "Attack": {
+                      "type": "string",
+                      "example": "Attack"
+                    },
+                    "Defense": {
+                      "type": "string",
+                      "example": "Defense"
+                    },
+                    "Sp. Attack": {
+                      "type": "string",
+                      "example": "Special Attack"
+                    },
+                    "Sp. Defense": {
+                      "type": "string",
+                      "example": "Special Defense"
+                    },
+                    "Speed": {
+                      "type": "string",
+                      "example": "Speed"
+                    }
+                  }
+                },
+                "moves": {
+                  "type": "array",
+                  "example": [
+                    "MovesIds"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "name",
+                "type",
+                "base",
+                "moves"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Pokedex"
+        ],
+        "description": "Replace a specific entry in the Pokedex by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the Pokedex entry"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Updated information for the Pokedex entry",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "object",
+                  "properties": {
+                    "english": {
+                      "type": "string",
+                      "example": "EnglishName"
+                    },
+                    "japanese": {
+                      "type": "string",
+                      "example": "JapaneseName"
+                    },
+                    "chinese": {
+                      "type": "string",
+                      "example": "ChineseName"
+                    },
+                    "french": {
+                      "type": "string",
+                      "example": "FrenchName"
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string",
+                  "example": "typeid"
+                },
+                "base": {
+                  "type": "object",
+                  "properties": {
+                    "HP": {
+                      "type": "string",
+                      "example": "Hit Points"
+                    },
+                    "Attack": {
+                      "type": "string",
+                      "example": "Attack"
+                    },
+                    "Defense": {
+                      "type": "string",
+                      "example": "Defense"
+                    },
+                    "Sp. Attack": {
+                      "type": "string",
+                      "example": "Special Attack"
+                    },
+                    "Sp. Defense": {
+                      "type": "string",
+                      "example": "Special Defense"
+                    },
+                    "Speed": {
+                      "type": "string",
+                      "example": "Speed"
+                    }
+                  }
+                },
+                "moves": {
+                  "type": "array",
+                  "example": [
+                    "MovesIds"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "name",
+                "type",
+                "base",
+                "moves"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Pokedex"
+        ],
+        "description": "Delete a specific entry from the Pokedex by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the Pokedex entry"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           },
           "404": {
             "description": "Not Found"

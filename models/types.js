@@ -11,18 +11,22 @@ const typesSchema = new mongoose.Schema({
     },
     chinese: {
         type: String,
-        required: true,
         min: 1,
         max: 100,
         unique: true
     },
     japanese: {
         type: String,
-        required: true,
         min: 1,
         max: 100,
         unique: true
     },
+    french: {
+        type: String,
+        min: 1,
+        max: 100,
+        unique: true
+    }
 });
 
 const TypesModel = mongoose.model('types', typesSchema);
@@ -30,8 +34,9 @@ const TypesModel = mongoose.model('types', typesSchema);
 const ValidateTypes = (types) => {
     const schema = Joi.object({
         english: Joi.string().min(1).max(100).required(),
-        chinese: Joi.string().min(1).max(100).required(),
-        japanese: Joi.string().min(1).max(100).required()
+        chinese: Joi.string().min(1).max(100),
+        japanese: Joi.string().min(1).max(100),
+        french: Joi.string().min(1).max(100)
     });
 
     return schema.validate(types);

@@ -12,15 +12,20 @@ const typesSchema = new mongoose.Schema({
     },
     cname: {
         type: String,
-        required: true
+        unique: true
     },
     ename: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     jname: {
         type: String,
-        required: true
+        unique: true
+    },
+    fname: {
+        type: String,
+        unique: true
     },
     power: {
         type: Number,
@@ -43,9 +48,10 @@ const ValidateMoves = (moves) => {
     const schema = Joi.object({
         accuracy: Joi.number().required(),
         category: Joi.string().required(),
-        cname: Joi.string().required(),
+        cname: Joi.string(),
         ename: Joi.string().required(),
-        jname: Joi.string().required(),
+        jname: Joi.string(),
+        fname: Joi.string(),
         power: Joi.number().required(),
         pp: Joi.number().required(),
         type: Joi.objectId().required()

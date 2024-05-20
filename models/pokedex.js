@@ -7,19 +7,26 @@ const pokedexSchema = new mongoose.Schema({
             type: String,
             required: true,
             min: 1,
-            max: 100
+            max: 100,
+            unique: true
         },
         japanese: {
             type: String,
-            required: true,
             min: 1,
-            max: 100
+            max: 100,
+            unique: true
         },
         chinese: {
             type: String,
-            required: true,
             min: 1,
-            max: 100
+            max: 100,
+            unique: true
+        },
+        french: {
+            type: String,
+            min: 1,
+            max: 100,
+            unique: true
         }
     },
     type: [{
@@ -65,8 +72,9 @@ const ValidatePokedex = (pokedex) => {
     const schema = Joi.object({
         name: Joi.object({
             english: Joi.string().min(1).max(100).required(),
-            japanese: Joi.string().min(1).max(100).required(),
-            chinese: Joi.string().min(1).max(100).required()
+            japanese: Joi.string().min(1).max(100),
+            chinese: Joi.string().min(1).max(100),
+            french: Joi.string().min(1).max(100)
         }),
         type: Joi.array().items(Joi.ObjectId()).required(),
         base: Joi.object({
