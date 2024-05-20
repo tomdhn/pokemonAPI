@@ -1,7 +1,7 @@
 const Joi = require('joi-oid')
 const mongoose = require('mongoose');
 
-const typesSchema = new Schema({
+const typesSchema = new mongoose.Schema({
     accuracy: {
         type: Number,
         required: true

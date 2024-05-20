@@ -2,9 +2,10 @@
   "name": "ti-eind-assignment-2324-project-tomdhn",
   "version": "1.0.0",
   "description": "a pokemon api",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js",
+    "swagger-autogen": "node generate-swagger.js"
   },
   "author": "Tom Dhoine",
   "license": "ISC",
@@ -14,6 +15,9 @@
     "express": "^4.19.2",
     "joi": "^17.13.1",
     "joi-oid": "^1.1.2",
-    "mongoose": "^8.4.0"
+    "mongoose": "^8.4.0",
+    "swagger-autogen": "^2.23.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
   }
 }

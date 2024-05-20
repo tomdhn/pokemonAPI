@@ -62,22 +62,22 @@ const pokedexSchema = new mongoose.Schema({
 const PokedexModel = mongoose.model('pokedex', pokedexSchema);
 
 const ValidatePokedex = (pokedex) => {
-    const schema = joi.object({
-        name: joi.object({
-            english: joi.string().min(1).max(100).required(),
-            japanese: joi.string().min(1).max(100).required(),
-            chinese: joi.string().min(1).max(100).required()
+    const schema = Joi.object({
+        name: Joi.object({
+            english: Joi.string().min(1).max(100).required(),
+            japanese: Joi.string().min(1).max(100).required(),
+            chinese: Joi.string().min(1).max(100).required()
         }),
-        type: joi.array().items(joi.ObjectId()).required(),
-        base: joi.object({
-            HP: joi.number().required(),
-            Attack: joi.number().required(),
-            Defense: joi.number().required(),
-            "Sp. Attack": joi.number().required(),
-            "Sp. Defense": joi.number().required(),
-            Speed: joi.number().required()
+        type: Joi.array().items(Joi.ObjectId()).required(),
+        base: Joi.object({
+            HP: Joi.number().required(),
+            Attack: Joi.number().required(),
+            Defense: Joi.number().required(),
+            "Sp. Attack": Joi.number().required(),
+            "Sp. Defense": Joi.number().required(),
+            Speed: Joi.number().required()
         }),
-        moves: joi.array().items(joi.ObjectId())
+        moves: Joi.array().items(Joi.ObjectId())
     });
 
     return schema.validate(pokedex);
