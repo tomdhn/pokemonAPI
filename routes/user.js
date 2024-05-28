@@ -3,8 +3,9 @@ const { UserModel, ValidateUser } = require('../models/user');
 const router = express.Router();
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
+const auth = require('../middleware/auth');
 
-router.post('/', async (req, res) => {
+router.post('/register', async (req, res) => {
     /* 
     #swagger.tags = ['Users']
     #swagger.description = 'Create a new user'
@@ -23,7 +24,6 @@ router.post('/', async (req, res) => {
     if (error) return res.status(400).send(error.details[0].message);
 
     const salt = await bcrypt.genSalt(10);
-
     const Email = (req.body.email).toLowerCase();
     console.log(Email);
     let user = new UserModel({
@@ -34,13 +34,14 @@ router.post('/', async (req, res) => {
 
     try {
         user = await user.save();
-        res.status(200).send(_.pick(user, ['_id', 'username', 'email']));
+        const token = user.generateAuthToken();
+        res.header('x-auth-token', token).send(_.pick(user, ['_id', 'username', 'email']));
     } catch (err) {
         res.status(400).send(err.message);
     }  
 });
 
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
     /*
      #swagger.tags = ['Users']
      #swagger.description = 'Get all users'
@@ -53,7 +54,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
     /*
      #swagger.tags = ['Users']
      #swagger.description = 'Get a user by ID'
@@ -68,7 +69,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', auth, async (req, res) => {
     /*
      #swagger.tags = ['Users']
      #swagger.description = 'Partially update a user by ID'
@@ -87,11 +88,12 @@ router.patch('/:id', async (req, res) => {
     const Email = (req.body.email).toLowerCase();
     const userId = req.params.id;
     const updateFields = req.body;
+    const salt = await bcrypt.genSalt(10);
 
     try {
         const updatedUser = await UserModel.findByIdAndUpdate(
             userId,
-            { password: updateFields.password, email: Email, username: updateFields.username},
+            { password: await bcrypt.hash(updateFields.password, salt), email: Email, username: updateFields.username},
             { new: true, runValidators: true }
         );
 
@@ -105,7 +107,7 @@ router.patch('/:id', async (req, res) => {
     }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
     /*
      #swagger.tags = ['Users']
      #swagger.description = 'Fully update a user by ID'
@@ -127,11 +129,12 @@ router.put('/:id', async (req, res) => {
     const Email = (req.body.email).toLowerCase();
     const userId = req.params.id;
     const updateFields = req.body;
+    const salt = await bcrypt.genSalt(10);
 
     try {
         const updatedUser = await UserModel.findByIdAndUpdate(
             userId,
-            { password: updateFields.password, email: Email, username: updateFields.username},
+            { password: await bcrypt.hash(updateFields.password, salt), email: Email, username: updateFields.username},
             { new: true, runValidators: true }
         );
 
@@ -145,7 +148,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     /*
      #swagger.tags = ['Users']
      #swagger.description = 'Delete a user by ID'

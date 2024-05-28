@@ -1,16 +1,14 @@
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
 const {UserModel} = require('../models/user');
-const mongoose = require('mongoose');
 const _ = require('lodash');
 const express = require('express');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
-const config = require('config');
+
 
 
 //login
-router.post('/', async (req, res) => {
+router.post('/login', async (req, res) => {
     /* 
     #swagger.tags = ['Auth']
     #swagger.description = 'Login'
@@ -34,8 +32,8 @@ router.post('/', async (req, res) => {
     const validPassword = await bcrypt.compare(req.body.password, user.password);
     if(!validPassword) return res.status(400).send('Invalid email or password');
 
-    const token = jwt.sign({_id: user._id},config.get('jwtPrivateKey'));
-    res.send(token);
+    const token = user.generateAuthToken();
+    res.header('x-auth-token', token).send(_.pick(user, ['_id', 'username', 'email']));
 });
 
 function validate(req) {

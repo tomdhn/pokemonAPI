@@ -1,8 +1,9 @@
 const express = require('express');
 const { TypesModel, ValidateTypes } = require('../models/types');
 const router = express.Router();
+const auth = require('../middleware/auth');
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
     /* 
     #swagger.tags = ['Types']
     #swagger.description = 'Create a new type'
@@ -64,7 +65,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', auth, async (req, res) => {
     /*
      #swagger.tags = ['Types']
      #swagger.description = 'Partially update a type by ID'
@@ -101,7 +102,7 @@ router.patch('/:id', async (req, res) => {
     }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
     /*
      #swagger.tags = ['Types']
      #swagger.description = 'Fully update a type by ID'
@@ -141,7 +142,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     /*
      #swagger.tags = ['Types']
      #swagger.description = 'Delete a type by ID'

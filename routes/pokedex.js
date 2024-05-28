@@ -1,8 +1,9 @@
 const express = require('express');
 const { PokedexModel, ValidatePokedex } = require('../models/pokedex');
 const router = express.Router();
+const auth = require('../middleware/auth');
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
     /* 
     #swagger.tags = ['Pokedex']
     #swagger.description = 'Create a new entry in the Pokedex'
@@ -88,7 +89,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', auth, async (req, res) => {
     /*
       #swagger.tags = ['Pokedex']
       #swagger.description = 'Update a specific entry in the Pokedex by ID.'
@@ -134,7 +135,7 @@ router.patch('/:id', async (req, res) => {
     }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
     /*
       #swagger.tags = ['Pokedex']
       #swagger.description = 'Replace a specific entry in the Pokedex by ID.'
@@ -183,7 +184,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     /*
       Delete a specific entry from the Pokedex by ID.
       #swagger.tags = ['Pokedex']

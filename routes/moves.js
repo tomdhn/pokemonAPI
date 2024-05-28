@@ -1,8 +1,9 @@
 const express = require('express');
 const { MovesModel, ValidateMoves } = require('../models/moves');
 const router = express.Router();
+const auth = require('../middleware/auth');
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
     /* 
     #swagger.tags = ['Moves']
     #swagger.description = 'Create a new move'
@@ -74,7 +75,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', auth, async (req, res) => {
     /*
      #swagger.tags = ['Moves']
      #swagger.description = 'Partially update a move by ID'
@@ -116,7 +117,7 @@ router.patch('/:id', async (req, res) => {
      }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
     /*
      #swagger.tags = ['Moves']
      #swagger.description = 'Update a move by ID'
@@ -161,7 +162,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     /*
      #swagger.tags = ['Moves']
      #swagger.description = 'Delete a move by ID'

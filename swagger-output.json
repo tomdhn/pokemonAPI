@@ -17,7 +17,7 @@
     "application/json"
   ],
   "paths": {
-    "/api/user/": {
+    "/api/user/register": {
       "post": {
         "tags": [
           "Users"
@@ -54,25 +54,34 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "400": {
             "description": "Bad Request"
           }
         }
-      },
+      }
+    },
+    "/api/user/": {
       "get": {
         "tags": [
           "Users"
         ],
         "description": "Get all users",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "302": {
             "description": "Found"
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }
@@ -90,11 +99,22 @@
             "required": true,
             "type": "string",
             "description": "User ID"
+          },
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
           "302": {
             "description": "Found"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
@@ -113,6 +133,11 @@
             "required": true,
             "type": "string",
             "description": "User ID"
+          },
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
           },
           {
             "name": "body",
@@ -145,6 +170,9 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           }
@@ -162,6 +190,11 @@
             "required": true,
             "type": "string",
             "description": "User ID"
+          },
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
           },
           {
             "name": "body",
@@ -199,6 +232,9 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           }
@@ -216,11 +252,22 @@
             "required": true,
             "type": "string",
             "description": "User ID"
+          },
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
@@ -235,6 +282,11 @@
         ],
         "description": "Create a new type",
         "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "body",
             "in": "body",
@@ -275,6 +327,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       },
@@ -331,6 +386,11 @@
             "description": "Type ID"
           },
           {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "body",
             "in": "body",
             "description": "Fields to update",
@@ -371,6 +431,9 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           }
@@ -388,6 +451,11 @@
             "required": true,
             "type": "string",
             "description": "Type ID"
+          },
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
           },
           {
             "name": "body",
@@ -430,6 +498,9 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           }
@@ -447,11 +518,22 @@
             "required": true,
             "type": "string",
             "description": "Type ID"
+          },
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
@@ -466,6 +548,11 @@
         ],
         "description": "Create a new entry in the Pokedex",
         "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "body",
             "in": "body",
@@ -558,6 +645,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       },
@@ -614,6 +704,11 @@
             "description": "ID of the Pokedex entry"
           },
           {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "body",
             "in": "body",
             "description": "Updated information for the Pokedex entry",
@@ -705,6 +800,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
@@ -725,6 +823,11 @@
             "description": "ID of the Pokedex entry"
           },
           {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "body",
             "in": "body",
             "description": "Updated information for the Pokedex entry",
@@ -817,6 +920,9 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           }
@@ -834,11 +940,22 @@
             "required": true,
             "type": "string",
             "description": "ID of the Pokedex entry"
+          },
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
@@ -853,6 +970,11 @@
         ],
         "description": "Create a new move",
         "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "body",
             "in": "body",
@@ -918,6 +1040,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       },
@@ -972,6 +1097,11 @@
             "required": true,
             "type": "string",
             "description": "Move ID"
+          },
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
           },
           {
             "name": "body",
@@ -1039,6 +1169,9 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           }
@@ -1056,6 +1189,11 @@
             "required": true,
             "type": "string",
             "description": "Move ID"
+          },
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
           },
           {
             "name": "body",
@@ -1123,6 +1261,9 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           }
@@ -1140,6 +1281,11 @@
             "required": true,
             "type": "string",
             "description": "Move ID"
+          },
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
@@ -1149,13 +1295,16 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           }
         }
       }
     },
-    "/api/auth/": {
+    "/api/auth/login": {
       "post": {
         "tags": [
           "Auth"
@@ -1187,9 +1336,6 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "400": {
             "description": "Bad Request"
           }
