@@ -1154,6 +1154,47 @@
           }
         }
       }
+    },
+    "/api/auth/": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "Login",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User information",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "Email"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "Password"
+                }
+              },
+              "required": [
+                "email",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
     }
   },
   "apis": [

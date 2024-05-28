@@ -1,6 +1,8 @@
 const express = require('express');
 const { UserModel, ValidateUser } = require('../models/user');
 const router = express.Router();
+const _ = require('lodash');
+const bcrypt = require('bcrypt');
 
 router.post('/', async (req, res) => {
     /* 
@@ -20,15 +22,19 @@ router.post('/', async (req, res) => {
     const { error } = ValidateUser(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
+    const salt = await bcrypt.genSalt(10);
+
+    const Email = (req.body.email).toLowerCase();
+    console.log(Email);
     let user = new UserModel({
         username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
+        email: Email,
+        password: await bcrypt.hash(req.body.password, salt)
     });
 
     try {
         user = await user.save();
-        res.status(200).send(user);
+        res.status(200).send(_.pick(user, ['_id', 'username', 'email']));
     } catch (err) {
         res.status(400).send(err.message);
     }  
@@ -40,8 +46,8 @@ router.get('/', async (req, res) => {
      #swagger.description = 'Get all users'
     */
     try {
-        const users = await UserModel.find();
-        res.status(302).send(users);
+        const users = await UserModel.find().select('-password');
+        res.status(302).send(users)
     } catch (err) {
         res.status(400).send(err.message);
     }
@@ -54,7 +60,7 @@ router.get('/:id', async (req, res) => {
      #swagger.parameters['id'] = { description: 'User ID', required: true }
     */
     try {
-        const user = await UserModel.findById(req.params.id);
+        const user = await UserModel.findById(req.params.id).select('-password');
         if (!user) return res.status(404).send('User not found.');
         res.status(302).send(user);
     } catch (err) {
@@ -78,13 +84,14 @@ router.patch('/:id', async (req, res) => {
          }
      }
     */
+    const Email = (req.body.email).toLowerCase();
     const userId = req.params.id;
     const updateFields = req.body;
 
     try {
         const updatedUser = await UserModel.findByIdAndUpdate(
             userId,
-            { $set: updateFields },
+            { password: updateFields.password, email: Email, username: updateFields.username},
             { new: true, runValidators: true }
         );
 
@@ -92,7 +99,7 @@ router.patch('/:id', async (req, res) => {
             return res.status(404).send('User not found');
         }
 
-        res.status(200).send(updatedUser);
+        res.status(200).send(_.pick(updatedUser, ['_id', 'username', 'email']));
     } catch (err) {
         res.status(400).send(err.message);
     }
@@ -117,13 +124,14 @@ router.put('/:id', async (req, res) => {
     const { error } = ValidateUser(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
+    const Email = (req.body.email).toLowerCase();
     const userId = req.params.id;
     const updateFields = req.body;
 
     try {
         const updatedUser = await UserModel.findByIdAndUpdate(
             userId,
-            { $set: updateFields },
+            { password: updateFields.password, email: Email, username: updateFields.username},
             { new: true, runValidators: true }
         );
 
@@ -131,7 +139,7 @@ router.put('/:id', async (req, res) => {
             return res.status(404).send('User not found');
         }
 
-        res.status(200).send(updatedUser);
+        res.status(200).send(_.pick(updatedUser, ['_id', 'username', 'email']));
     } catch (err) {
         res.status(400).send(err.message);
     }
@@ -146,7 +154,7 @@ router.delete('/:id', async (req, res) => {
     try {
         const user = await UserModel.findByIdAndDelete(req.params.id);
         if (!user) return res.status(404).send('User not found.');
-        res.status(200).send(user);
+        res.status(200).send(_.pick(user, ['_id', 'username', 'email']));
     } catch (err) {
         res.status(404).send(err.message);
     }

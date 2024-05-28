@@ -6,6 +6,12 @@ const config = require('config');
 const port = config.get('server.port');
 const app = express();
 
+// Check if jwtPrivateKey is defined
+if (!config.get('jwtPrivateKey')){
+  console.error('FATAL ERROR: jwtPrivateKey not defined');
+  process.exit(1);
+  }
+
 app.use(express.json());
 app.use(cors({
   credentials: true,
@@ -23,11 +29,13 @@ const userRouter = require('./routes/user');
 const typesRouter = require('./routes/types');
 const pokedexRouter = require('./routes/pokedex');
 const movesRouter = require('./routes/moves');
+const auth = require('./routes/auth');
 
 app.use('/api/user', userRouter);
 app.use('/api/types', typesRouter);
 app.use('/api/pokedex', pokedexRouter);
 app.use('/api/moves', movesRouter);
+app.use('/api/auth', auth);
 
 app.listen(port, () => {
     console.log("Server Listening on PORT:", port);
