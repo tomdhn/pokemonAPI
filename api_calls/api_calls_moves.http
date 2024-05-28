@@ -1,0 +1,2 @@
+@base_URL = http://localhost:3000/api/moves
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjU1YmZkOGZiNzRmMzNjOWU5YTQ2MWYiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB2aXZlcy5iZSIsImlhdCI6MTcxNjg5NjA5OCwiZXhwIjoxNzQ4NDMyMDk4fQ.TeLjHBEWHhts4uQCEgIZSKoVDtrQX5ngUS8zzjsV-_g
