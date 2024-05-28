@@ -85,15 +85,17 @@ router.patch('/:id', auth, async (req, res) => {
          }
      }
     */
-    const Email = (req.body.email).toLowerCase();
-    const userId = req.params.id;
-    const updateFields = req.body;
-    const salt = await bcrypt.genSalt(10);
+    
+     const userId = req.params.id;
+     const updateFields = req.body;
+     const salt = await bcrypt.genSalt(10);
+     if(updateFields.password) updateFields.password = await bcrypt.hash(updateFields.password, salt);
+     if(updateFields.email) updateFields.email = (updateFields.email).toLowerCase();
 
     try {
         const updatedUser = await UserModel.findByIdAndUpdate(
             userId,
-            { password: await bcrypt.hash(updateFields.password, salt), email: Email, username: updateFields.username},
+            { password:updateFields.password, email: updateFields.email, username: updateFields.username},
             { new: true, runValidators: true }
         );
 

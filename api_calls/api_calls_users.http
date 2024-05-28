@@ -1,2 +1,53 @@
 @base_URL = http://localhost:3000/api/user
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjU1YmZkOGZiNzRmMzNjOWU5YTQ2MWYiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB2aXZlcy5iZSIsImlhdCI6MTcxNjg5NjA5OCwiZXhwIjoxNzQ4NDMyMDk4fQ.TeLjHBEWHhts4uQCEgIZSKoVDtrQX5ngUS8zzjsV-_g
+
+### create user
+
+POST {{base_URL}}/register
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+    "username": "testUser",
+    "email": "testUser@test.com",
+    "password": "testUser"
+}
+### save id of testuser here!
+@id = 6655c7fb5f6b9eefccf8bcd6
+
+### get all users
+
+GET {{base_URL}}
+x-auth-token: {{token}}
+
+### get user by id
+
+GET {{base_URL}}/{{id}}
+x-auth-token: {{token}}
+
+### update user
+
+PUT {{base_URL}}/{{id}}
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+    "username": "testUser2",
+    "email": "testUser@test.com",
+    "password": "testUser"
+}
+
+### patch user
+
+PATCH {{base_URL}}/{{id}}
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+    "username": "testUser3"
+}
+
+### delete user
+
+DELETE {{base_URL}}/{{id}}
+x-auth-token: {{token}}

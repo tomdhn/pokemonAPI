@@ -1,2 +1,65 @@
 @base_URL = http://localhost:3000/api/moves
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjU1YmZkOGZiNzRmMzNjOWU5YTQ2MWYiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB2aXZlcy5iZSIsImlhdCI6MTcxNjg5NjA5OCwiZXhwIjoxNzQ4NDMyMDk4fQ.TeLjHBEWHhts4uQCEgIZSKoVDtrQX5ngUS8zzjsV-_g
+
+### add new move
+
+POST {{base_URL}}
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+    "accuracy": 100,
+    "category": "Special",
+    "ename": "Thunder",
+    "cname": "雷电",
+    "jname": "かみなり",
+    "fname": "Tonnerre",
+    "power": 110,
+    "pp": 10,
+    "type": "664b75f217e958e958a02f13"
+}
+
+### save id of new move here!
+@id = 6655d7c55f6b9eefccf8bcf2
+
+### get all moves
+
+GET {{base_URL}}
+
+### get move by id
+
+GET {{base_URL}}/{{id}}
+
+### update move
+
+PUT {{base_URL}}/{{id}}
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+    "accuracy": 1100,
+    "category": "phisical",
+    "ename": "Thunder1",
+    "cname": "雷电1",
+    "jname": "かみなり1",
+    "fname": "Tonnerre1",
+    "power": 110,
+    "pp": 10,
+    "type": "664b75f217e958e958a02f13"
+}
+
+### patch move
+
+PATCH {{base_URL}}/{{id}}
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+    "accuracy": 100,
+    "category": "Special"
+}
+
+### delete move
+
+DELETE {{base_URL}}/{{id}}
+x-auth-token: {{token}}

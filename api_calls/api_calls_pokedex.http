@@ -1,2 +1,83 @@
 @base_URL = http://localhost:3000/api/pokedex
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjU1YmZkOGZiNzRmMzNjOWU5YTQ2MWYiLCJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkB2aXZlcy5iZSIsImlhdCI6MTcxNjg5NjA5OCwiZXhwIjoxNzQ4NDMyMDk4fQ.TeLjHBEWHhts4uQCEgIZSKoVDtrQX5ngUS8zzjsV-_g
+
+### add new pokemon
+
+POST {{base_URL}}
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+    "name": {
+        "english": "pickachu",
+        "japanese": "ピカチュウ",
+        "chinese": "皮卡丘",
+        "french": "Pikachu"
+    },
+    "type": ["664b75f217e958e958a02f13"],
+    "base": {
+        "HP": 35,
+        "Attack": 55,
+        "Defense": 40,
+        "Sp. Attack": 50,
+        "Sp. Defense": 50,
+        "Speed": 90
+    },
+    "moves": ["664b7efe86991bc22e44fdde"]
+}
+
+### save id of new pokemon here!
+@id = 6655d5ed5f6b9eefccf8bce8
+
+### get all pokemons
+
+GET {{base_URL}}
+
+### get pokemon by id
+
+GET {{base_URL}}/{{id}}
+
+### update pokemon
+
+PUT {{base_URL}}/{{id}}
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+    "name": {
+        "english": "pickachu1",
+        "japanese": "ピカチュウ1",
+        "chinese": "皮卡丘1",
+        "french": "Pikachu1"
+    },
+    "type": ["664b75f217e958e958a02f13"],
+    "base": {
+        "HP": 45,
+        "Attack": 355,
+        "Defense": 420,
+        "Sp. Attack": 540,
+        "Sp. Defense": 50,
+        "Speed": 90
+    },
+    "moves": ["664b7efe86991bc22e44fdde"]
+}
+
+### patch pokemon
+
+PATCH {{base_URL}}/{{id}}
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+    "name": {
+        "english": "pickachu",
+        "japanese": "ピカチュウ",
+        "chinese": "皮卡丘",
+        "french": "Pikachu"
+    }
+}
+
+### delete pokemon
+
+DELETE {{base_URL}}/{{id}}
+x-auth-token: {{token}}
