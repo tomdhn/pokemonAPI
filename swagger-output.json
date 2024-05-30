@@ -5,7 +5,7 @@
     "description": "API Documentation for the Pokemon API",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "https://pokemonapi-kjniw4ie4a-ew.a.run.app",
   "basePath": "/",
   "schemes": [
     "http"
@@ -67,8 +67,8 @@
         ],
         "description": "Get all users",
         "responses": {
-          "302": {
-            "description": "Found"
+          "200": {
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
@@ -97,8 +97,8 @@
           }
         ],
         "responses": {
-          "302": {
-            "description": "Found"
+          "200": {
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
@@ -329,8 +329,8 @@
         ],
         "description": "Get all types",
         "responses": {
-          "302": {
-            "description": "Found"
+          "200": {
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
@@ -354,8 +354,8 @@
           }
         ],
         "responses": {
-          "302": {
-            "description": "Found"
+          "200": {
+            "description": "OK"
           },
           "404": {
             "description": "Not Found"
@@ -647,8 +647,8 @@
         ],
         "description": "Retrieve all entries from the Pokedex.",
         "responses": {
-          "302": {
-            "description": "Found"
+          "200": {
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
@@ -672,8 +672,8 @@
           }
         ],
         "responses": {
-          "302": {
-            "description": "Found"
+          "200": {
+            "description": "OK"
           },
           "404": {
             "description": "Not Found"
@@ -1042,8 +1042,8 @@
         ],
         "description": "Get all moves",
         "responses": {
-          "302": {
-            "description": "Found"
+          "200": {
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
@@ -1067,8 +1067,8 @@
           }
         ],
         "responses": {
-          "302": {
-            "description": "Found"
+          "200": {
+            "description": "OK"
           },
           "404": {
             "description": "Not Found"
