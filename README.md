@@ -5,6 +5,7 @@ Deze API biedt eindpunten voor het beheren van data met betrekking tot Pokémon,
 Authenticatie
 
 Om toegang te krijgen tot bepaalde eindpunten is authenticatie vereist. Authenticatie wordt geïmplementeerd met behulp van JSON Web Tokens (JWT). Gebruikers kunnen een JWT-token verkrijgen door een account te registreren en in te loggen.
+
 alle POST - PATCH - PUT - DELETE routes van deze api verwachten een jwt token in het header met naam x-auth-token !
 Routes
 
