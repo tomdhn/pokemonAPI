@@ -66,22 +66,12 @@
           "Users"
         ],
         "description": "Get all users",
-        "parameters": [
-          {
-            "name": "x-auth-token",
-            "in": "header",
-            "type": "string"
-          }
-        ],
         "responses": {
           "302": {
             "description": "Found"
           },
           "400": {
             "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         }
       }

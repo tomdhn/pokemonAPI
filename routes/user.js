@@ -35,20 +35,20 @@ router.post('/register', async (req, res) => {
     try {
         user = await user.save();
         const token = user.generateAuthToken();
-        res.header('x-auth-token', token).send(_.pick(user, ['_id', 'username', 'email']));
+        res.header('x-auth-token', token).status(200).send(_.pick(user, ['_id', 'username', 'email']));
     } catch (err) {
         res.status(400).send(err.message);
     }  
 });
 
-router.get('/', auth, async (req, res) => {
+router.get('/', async (req, res) => {
     /*
      #swagger.tags = ['Users']
      #swagger.description = 'Get all users'
     */
     try {
         const users = await UserModel.find().select('-password');
-        res.status(302).send(users)
+        res.status(200).send(users);
     } catch (err) {
         res.status(400).send(err.message);
     }
@@ -63,7 +63,7 @@ router.get('/:id', auth, async (req, res) => {
     try {
         const user = await UserModel.findById(req.params.id).select('-password');
         if (!user) return res.status(404).send('User not found.');
-        res.status(302).send(user);
+        res.status(200).send(user);
     } catch (err) {
         res.status(404).send(err.message);
     }

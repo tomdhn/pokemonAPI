@@ -44,7 +44,7 @@ router.get('/', async (req, res) => {
     */
     try {
         const types = await TypesModel.find();
-        res.status(302).send(types);
+        res.status(200).send(types);
     } catch (err) {
         res.status(400).send(err.message);
     }
@@ -59,7 +59,7 @@ router.get('/:id', async (req, res) => {
     try {
         const type = await TypesModel.findById(req.params.id);
         if (!type) return res.status(404).send('Type not found.');
-        res.status(302).send(type);
+        res.status(200).send(type);
     } catch (err) {
         res.status(404).send(err.message);
     }

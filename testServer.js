@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const config = require('config');
-const port = config.get('server.port');
+const port = 3001;
 const app = express();
 
 // Check if jwtPrivateKey is defined

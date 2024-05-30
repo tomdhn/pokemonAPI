@@ -54,7 +54,7 @@ router.get('/', async (req, res) => {
     */
     try {
         const moves = await MovesModel.find().populate('type');
-        res.status(302).send(moves);
+        res.status(200).send(moves);
     } catch (err) {
         res.status(400).send(err.message);
     }
@@ -69,7 +69,7 @@ router.get('/:id', async (req, res) => {
     try {
         const move = await MovesModel.findById(req.params.id).populate('type');
         if (!move) return res.status(404).send('Move not found.');
-        res.status(302).send(move);
+        res.status(200).send(move);
     } catch (err) {
         res.status(404).send(err.message);
     }

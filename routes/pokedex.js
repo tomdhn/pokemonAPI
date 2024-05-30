@@ -68,7 +68,7 @@ router.get('/', async (req, res) => {
     */
     try {
         const pokedex = await PokedexModel.find().populate('type').populate('moves');
-        res.status(302).send(pokedex);
+        res.status(200).send(pokedex);
     } catch (err) {
         res.status(400).send(err.message);
     }
@@ -83,7 +83,7 @@ router.get('/:id', async (req, res) => {
     try {
         const pokedex = await PokedexModel.findById(req.params.id).populate('type').populate('moves');
         if (!pokedex) return res.status(404).send('Pokedex entry not found.');
-        res.status(302).send(pokedex);
+        res.status(200).send(pokedex);
     } catch (err) {
         res.status(404).send(err.message);
     }

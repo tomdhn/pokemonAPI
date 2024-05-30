@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "swagger-autogen": "node generate-swagger.js"
+    "swagger-autogen": "node generate-swagger.js",
+    "test": "mocha"
   },
   "author": "Tom Dhoine",
   "license": "ISC",
@@ -19,8 +20,16 @@
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "mongoose": "^8.4.0",
+    "request": "^2.88.2",
     "swagger-autogen": "^2.23.7",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
+    "esm": "^3.2.25",
+    "mocha": "^10.4.0",
+    "nyc": "^15.1.0"
   }
 }
