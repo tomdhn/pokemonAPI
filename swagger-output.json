@@ -5,7 +5,7 @@
     "description": "API Documentation for the Pokemon API",
     "version": "1.0.0"
   },
-  "host": "https://pokemonapi-kjniw4ie4a-ew.a.run.app",
+  "host": "pokemonapi-kjniw4ie4a-ew.a.run.app",
   "basePath": "/",
   "schemes": [
     "http"
