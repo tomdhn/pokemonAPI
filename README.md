@@ -1,5 +1,8 @@
 Pokémon API
 
+live version: https://pokemonapi-kjniw4ie4a-ew.a.run.app
+live version swagger doc: https://pokemonapi-kjniw4ie4a-ew.a.run.app/api-docs/#/
+
 Deze API biedt eindpunten voor het beheren van data met betrekking tot Pokémon, waaronder gebruikers, bewegingen, typen en data in Pokédex.
 
 Authenticatie

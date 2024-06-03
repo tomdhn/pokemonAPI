@@ -6,7 +6,7 @@ const doc = {
         description: 'API Documentation for the Pokemon API',
     },
     host: 'pokemonapi-kjniw4ie4a-ew.a.run.app',
-    schemes: ['http'],
+    schemes: ['https'],
     consumes: ['application/json'],
     produces: ['application/json'],
     apis: ["./routes/*.js"],

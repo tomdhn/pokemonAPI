@@ -8,7 +8,7 @@
   "host": "pokemonapi-kjniw4ie4a-ew.a.run.app",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "consumes": [
     "application/json"
